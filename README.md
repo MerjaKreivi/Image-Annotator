@@ -4,7 +4,10 @@
 
 The project was originally carried by Merja Kreivi-Kauppinen and Juha Paaso.
 
+Project includes two annotators - one for private photos, and one for social media images for reserch purposis.
+
 ## Getting started
+
 It is recommended to use virtual environment for using and testing the code. Usage of Python 3.7 or newer version is required. Use "pip install" to install virtual environment packages.
 
 ### Setting up virtual environment
