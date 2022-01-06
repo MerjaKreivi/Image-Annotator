@@ -1,10 +1,8 @@
-# PWP SPRING 2021
 # Image Annotator
-# Group information
-* Student 1. Merja Kreivi-Kauppinen   Merja.Kreivi-Kauppinen@student.oulu.fi
-* Student 2. Juha Paaso               Juha.Paaso@student.oulu.fi
 
-__Remember to include all required documentation and HOWTOs, including how to create and populate the database, how to run and test the API, the url to the entrypoint and instructions on how to setup and run the client__
+### This REST API was originally created as team work assignment for course Programmable Web Project course on spring 2021 in University of Oulu.
+
+The project was originally carried by Merja Kreivi-Kauppinen and Juha Paaso.
 
 ## Getting started
 It is recommended to use virtual environment for using and testing the code. Usage of Python 3.7 or newer version is required. Use "pip install" to install virtual environment packages.
