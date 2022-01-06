@@ -1,6 +1,6 @@
 # Image Annotator
 
-### This REST API was originally created as team work assignment for course Programmable Web Project course on spring 2021 in University of Oulu.
+### This REST API was originally created as team assignment for Programmable Web Project course on spring 2021 in University of Oulu.
 
 The project was originally carried by Merja Kreivi-Kauppinen and Juha Paaso.
 
