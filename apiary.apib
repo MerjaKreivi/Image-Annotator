@@ -1,0 +1,2422 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# Image Annotator
+
+Image Annotator is a RESTful API for collecting and annotating public images and private photographs to SQLite database. 
+
+Image Annotator API is designed to be used as a part of scientific hate speech study analysis whereas the aim is collect and annotate of social media images which include text for example memes. Image Annotator API includes also private part which is designed for collecting and annotating private photographs.
+
+Images and photographs create collections which include image or photo related metadata and user identity to identify the owner of the images and photos. Image and photo annotations include image or photo specific annotations created by registered user. Accordingly, annotations are collected to Image Annotation and Photo Annotation Collections. Users need to be registered, and registered users are collected User Collection.
+
+
+
+# Group Link Relations
+
+This section describes custom link relations defined in Image Annotator API. 
+These are not resources. Custom link relations are CURIEs that use the annometa prefix.
+Image Annotator API utilizes defined custom link relations, and [IANA link relations] 
+(http://www.iana.org/assignments/link-relations/link-relations.xhtml) where applicable. 
+
+## userlogin
+
+The control for checking user credentials for login purposes
+
+## add-user
+
+The control for adding new user to the API. The control includes a JSON schema and must be accessed with POST.
+
+## add-image
+
+The control for adding new image resource or new resources to the API. The control includes a JSON schema and must be accessed with POST.
+
+## add-photo (NOT IMPLEMENTED)
+
+The control for adding new photo resource or new resources to the API. The control includes a JSON schema and must be accessed with POST.
+
+## add-photoannotation (NOT IMPLEMENTED)
+
+The control for adding new annotation for specified photograph. The control includes a JSON schema and must be accessed with POST.
+
+## add-imageannotation (NOT IMPLEMENTED)
+
+The control for adding new annotation for specified image. The control includes a JSON schema and must be accessed with POST.
+
+## images-by (NOT IMPLEMENTED)
+
+Leads to list of images collected by registered user. The control includes a JSON schema and must be accessed with GET.
+
+## photos-by (NOT IMPLEMENTED)
+
+Leads to list of photographs collected by registered user. The control includes a JSON schema and must be accessed with GET.
+
+## photoannotations-by (NOT IMPLEMENTED)
+
+Leads to list of photoannotations collected by registered user. The control includes a JSON schema and must be accessed with GET.
+
+## imageannotations-by (NOT IMPLEMENTED)
+
+Leads to list of imageannotations collected by registered user. The control includes a JSON schema and must be accessed with GET.
+
+## photoannotations-by-photo (NOT IMPLEMENTED)
+
+Leads to list of photoannotations collected by photo. The control includes a JSON schema and must be accessed with GET.
+
+## imageannotations-by-image  (NOT IMPLEMENTED)
+
+Leads to list of imageannotations collected by photo. The control includes a JSON schema and must be accessed with GET.
+
+## users-all
+
+Leads to list of users that are registered to the API. The control includes a JSON schema and must be accessed with GET.
+
+## photos-all  (NOT IMPLEMENTED)
+
+Leads to list of photographs that are collected to the API. The control includes a JSON schema and must be accessed with GET.
+
+## images-all
+
+Leads to list of images that are collected to the API. The control includes a JSON schema and must be accessed with GET.
+
+## photoannotations-all  (NOT IMPLEMENTED)
+
+Leads to list of photographs that are collected to the API. The control includes a JSON schema and must be accessed with GET.
+
+## imageannotations-all
+
+Leads to list of images that are collected to the API. The control includes a JSON schema and must be accessed with GET.
+
+## delete
+
+The control for deleting the specific resource. Must be accessed with DELETE.
+
+
+
+
+
+# Group Profiles
+
+This section includes resource profiles which provide semantic descriptions for the attributes of each resource, as well as the list of controls (by link relation) available from that resource.
+
+
+
+
+
+## User Profile
+
+This Profile define the User related information.
+
+### Description
+
+Registered user can import, annotate, edit and delete images and photographs, and related annotations. 
+Logging into API is done by using get method to User resource. 
+Access is denied if the correct secret apikey is not found in the header.
+
+
+### Dependencies
+ - none
+ 
+### Related Profile
+ - none
+
+### Link relations
+
+This section lists all possible link relations associated with User. 
+
+The following link relations from the annometa namespace are used for:
+
+ * [add-userlogin](reference/link-relations/add-userlogin)
+ * [add-user](reference/link-relations/add-user)
+ * [add-photo](reference/link-relations/add-photo)
+ * [add-image](reference/link-relations/add-image)
+ * [add-photoannotation](reference/link-relations/add-photoannotation)
+ * [add-imageannotation](reference/link-relations/add-imageannotation)
+ * [photos-by] (NOT IMPLEMENTED) (reference/link-relations/photos-by)
+ * [images-by] (NOT IMPLEMENTED) (reference/link-relations/images-by)
+ * [photoannotations-by] (NOT IMPLEMENTED) (reference/link-relations/photoannotations-by)
+ * [imageannotations-by] (NOT IMPLEMENTED) (reference/link-relations/imageannotations-by)
+ * [users-all](reference/link-relations/users-all)
+ * [photos-all](reference/link-relations/photos-all)
+ * [images-all](reference/link-relations/images-all)
+ * [photoannotations-all](reference/link-relations/photoannotations-all)
+ * [imageannotations-all](reference/link-relations/imageannotations-all)
+ * [delete](reference/link-relations/delete)
+
+The following [IANA RFC5988](http://www.iana.org/assignments/link-relations/link-relations.xhtml) link relations are also used:
+
+ * author
+ * collection
+ * edit
+ * self
+
+### Semantic descriptors
+ * **user_name**: STRING. User name of the user that has registered to the API.
+ * **user_password**: STRING. Password of the registered user.
+
+
+
+
+
+## Image Content Profile
+
+Image content profile define the image or photograph related information.
+
+### Description
+
+Registered user can import, delete and edit images and photographs in Image Annotator API.
+
+### Dependencies
+ * ISO 8601 (Date and Time format). More info at: http://en.wikipedia.org/wiki/ISO_8601
+
+### Related Profile
+ * *User*
+
+### Link relations
+
+This section lists all possible link relations associated with Image Content. 
+
+The following link relations from the annometa namespace are used for:
+
+ * [add-photo](reference/link-relations/add-photo)
+ * [add-image](reference/link-relations/add-image)
+ * [photos-all](reference/link-relations/photos-all)
+ * [images-all](reference/link-relations/images-all)
+ * [delete](reference/link-relations/delete)
+
+The following [IANA RFC5988](http://www.iana.org/assignments/link-relations/link-relations.xhtml) link relations are also used:
+
+ * author
+ * collection
+ * edit
+ * self
+
+### Semantic descriptors
+ * **name**: STRING. Name of the loaded image or photograph file.
+ * **publish_date**: DATE (ISO_8601)/NONE. If the device or user have updated or defined the date when image or photograph has been taken or published originally, the date is gathered as metadata. If it does not exist, it will contain None.
+ * **location**: STRING. Location of file from where image or photograph file has been loaded to API.
+ * **is_private**: BOOLEAN. Defines if loaded file is defined as private photograph (True) or public social media image (False). Default is True (as private photograph).
+ * **date**: DATE (ISO_8601). Date and time when the image or photograph has been loaded to API.
+
+ 
+
+
+
+## Image Annotation Profile
+
+This Profile define the Image Annotation related information.
+
+### Description
+
+Registered user can annotate images for example for scientific social media study purposis. 
+Registered user can also add, delete or edit image related annotations. 
+Logging in as user is done by using get method to that resource. 
+Access is denied if the correct secret apikey is not found in the header.
+
+### Dependencies
+ * ISO 8601 (Date and Time format). More info at: http://en.wikipedia.org/wiki/ISO_8601
+
+### Related Profile
+ * *User*
+ * *ImageContent*
+
+### Link relations
+
+This section lists all possible link relations associated with Image Annotation. 
+
+The following link relations from the annometa namespace are used for:
+
+ * [add-imageannotation](reference/link-relations/add-imageannotation)
+ * [delete](reference/link-relations/delete)
+
+The following [IANA RFC5988](http://www.iana.org/assignments/link-relations/link-relations.xhtml) link relations are also used:
+
+ * author
+ * collection
+ * edit
+ * self
+
+### Semantic descriptors
+ * **meme_class**: BOOLEAN. Boolean classifier to identify meme images. Classified as True if image is meme. Classified as False if image is not meme.
+ * **HS_class**: BOOLEAN. Boolean classifier to identify hate speech images. Classified as True if image is or includes hate speech. Classified as False if image is not or does not include hate speech.
+ * **text_class**: BOOLEAN. Boolean classifier to identify images that includes text. Classified as True if image includes text. Classified as False if image does not include text.
+ * **polarity_classA**: INTEGER. Positive-neutral-negative polarity classifier for image. Integer can get value 2 or 1 if image is positive, value 0 if image is neutral, and value -1 or -2 if image is negative.
+ * **polarity_classB**: INTEGER. Positive-negative polarity strength classifier for image. Integer can get value between 1 to 5 if image is positive, and value between -1 or -5 if image is negative. Image cannot get value 0.
+ * **HS_strength**: INTEGER. Negative polarity strength classifier for hate speech images. Integer can get value between -1 to -5 according to how hateful it is defined.
+ * **HS_category**: STRING. Hate speech category classifier for hate speech images. Available hate speech (HS) categories are presented below.
+ * **text_text**: STRING. Text of image, if image includes text.
+ * **text_language**: STRING. Language of the text on image, if image includes text.
+
+ * Hate Speech (HS) categories: national, immigration, foreign, ethnic, religion, opinion, group, politics, health, sexual, socialMedia, socioeconomicStatus, appearance, gender, women, men, work, violence, family, swear, bully, troll, coded, idiom, joke, symbolic, other
+
+
+
+
+
+## Photo Annotation Profile
+
+This Profile define the Photo Annotation related information.
+
+### Description
+
+Registered user can annotate photographs for example for private use. 
+Registered user can also add, delete or edit photo related annotations. 
+Logging in as user is done by using get method to that resource. 
+Access is denied if the correct secret apikey is not found in the header.
+
+### Dependencies
+ * ISO 8601 (Date and Time format). More info at: http://en.wikipedia.org/wiki/ISO_8601
+
+### Related Profile
+ * *User*
+ * *ImageContent*
+
+### Link relations
+
+This section lists all possible link relations associated with Photo Annotation. 
+
+The following link relations from the annometa namespace are used for:
+
+ * [add-photoannotation](reference/link-relations/add-photoannotation)
+ * [delete](reference/link-relations/delete)
+
+The following [IANA RFC5988](http://www.iana.org/assignments/link-relations/link-relations.xhtml) link relations are also used:
+
+ * author
+ * collection
+ * edit
+ * self
+
+### Semantic descriptors
+
+ * **persons_class**: BOOLEAN. Boolean classifier to identify persons in photo. Classified as True if image includes persons. Classified as False if image does not include persons.
+ * **slideshow_class**: BOOLEAN. Boolean classifier to identify photos suitable for photo-slide-show. Classified as True if image is suitable for show. Classified as False if image is not suitable for show.
+ * **positivity_class**: INTEGER. Neutral-positive polarity classifier for photo. Integer can get a value between 1 and 10 ( 1 - 10 ) according to how good photo is.
+ * **text_free_comment**: STRING. The free comment text made by user on the photo.
+ * **text_persons**: STRING. Text to identify persons and persons names on photo, if photo includes persons.
+ * **text_persons_comment**: STRING. Free comment text about persons on photo, if photo includes persons.
+
+
+
+
+
+# Group Entry
+
+This group contains the entry point of the API
+
+## Entry Point [/api/]
+
+### Get entry point [GET]
+
+Get the API entry point
+
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+            
++ Response 200 (application/vnd.mason+json)
+
+    + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "@controls": {
+                    "annometa:photoannotations-all": {
+                        "href": "/api/photoannotations/"
+                    },
+                    "annometa:imageannotations-all": {
+                        "href": "/api/imageannotations/"
+                    },
+                    "annometa:users-all": {
+                        "href": "/api/users/"
+                    },
+                    "annometa:photos-all": {
+                        "href": "/api/photos/"
+                    },
+                    "annometa:images-all": {
+                        "href": "/api/images/"
+                    }
+                }
+            }
+
+
+
+
+
+# Group Users
+
+All of these resources use the [User Profile](reference/profiles/user-profile). 
+In error scenarios [Error Profile](reference/profiles/error-profile) is used.
+
+## Users Collection [/api/users/]
+
+A list of all userss known to the API. 
+
+This collection can be sorted using the sortby query parameter. 
+For each user only  ---  user name is included, 
+more information can be found by following the `self` relation of each user. 
+
+### List all users [GET]
+
+Get a list of all users known to the API.
+
++ Relation: users-all
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+
++ Response 200 (application/vnd.mason+json)
+    
+    + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "@controls": {
+                    "self": {
+                        "href": "/api/users/"
+                    },
+                    "annometa:users-all": {
+                        "href": "/api/users/",
+                        "title": "GET All users"                                                
+                    },
+                    "annometa:userlogin": {
+                        "href": "/api/userlogin/",
+                        "title": "Checks that user name and password are valid for login purposes",
+                        "encoding": "json",
+                        "method": "POST",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user_name": {
+                                    "description": "User name",
+                                    "type": "string"
+                                },
+                                "user_password": {
+                                    "description": "User password",
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["user_name", "user_password"]
+                        }
+                    },
+                    "annometa:add-user": {
+                        "href": "/api/users/",
+                        "title": "Add a new user",
+                        "encoding": "json",
+                        "method": "POST",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user_name": {
+                                    "description": "User name",
+                                    "type": "string"
+                                },
+                                "user_password": {
+                                    "description": "User password",
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["user_name", "user_password"]
+                        }
+                    }
+                },
+                "items": [
+                    {
+                        "user_name": "Merja",
+                        "user_password": "pass",
+                        "@controls": {
+                            "self": {
+                                "href": "/api/users/merja/"
+                            }, 
+                            "profile": {
+                                "href": "/profiles/user/"
+                            }
+                        }
+                    }
+                ]
+            }
+
+
+### Add user [POST]
+
+Adds a new user. The user representation must be valid against the user schema.
+
++ Relation: add-user
++ Request (application/json)
+
+    + Headers
+
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+                "user_name": "merja",
+                "user_password": "pass"
+            }
+
++ Response 201
+
+    + Headers
+    
+            Location: /api/users/merja/
+
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document 
+    that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+            
++ Response 409 (application/vnd.mason+json)
+
+    The client is trying to add user that allready in the database.
+
+    + Body
+        
+            ...
+            
+            
++ Response 415 (application/vnd.mason+json)
+
+    The client did not use the proper content type, or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+            
+
+
+## UserLogin [/api/userlogin/]
+
+POST for login purposes. Checks if "user name" and "user password" are valid in client request.
+
+
+### Add userlogin [POST]
+
+POST for login purposes. The userlogin representation must be valid against the user schema.
+
++ Relation: userlogin
++ Request (application/json)
+
+    + Headers
+
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+                "user_name": "merja",
+                "user_password": "pass"
+            }
+
++ Response 200
+
+    + Headers
+    
+            Location: /api/users/merja/
+
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document 
+    that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+
++ Response 401 (application/vnd.mason+json)
+
+    The client is trying to send an invalid password.
+
+    + Body
+    
+            ...
+            
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to login as a user that doesn't exist.
+
+    + Body
+    
+            ...
+
++ Response 415 (application/vnd.mason+json)
+
+    The client did not use the proper content type, or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+            
+
+## User [/api/users/{user}/]
+
+This is a single user item by given user using the user's unique name. 
+For each user only --- user name is included, 
+more information can be found by following the `self` relation of each artist. 
+
++ Parameters
+
+    + user: merja (string) - user's unique user_name
+
+### User information [GET]
+
+Get the user representation.
+
++ Relation: self
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+        
++ Response 200 (application/vnd.mason+json)
+
+    + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "user_name": "merja",
+                "user_password": "pass",
+                "@controls": {
+                    "self": {
+                        "href": "/api/users/merja/"
+                    },
+                    "annometa:photoannotations-by": {
+                        "href": "/api/users/merja/photos/1/photoannotations/"
+                        "title:" "All photoannotations of given photo of given user
+                    },
+                    "annometa:imageannotations-by": {
+                        "href": "/api/users/merja/images/1/imageannotations/"
+                        "title:" "All imageannotations of given image of given user
+                    },
+                    "annometa:photos-by": {
+                        "href": "/api/users/merja/photos/"
+                        "title": "All photos by given user
+                    },
+                    "annometa:images-by": {
+                        "href": "/api/users/merja/images/"
+                        "title": "All images by given user
+                    },
+                    "annometa:photoannotations-by-photo-all-users": {
+                        "href": "/api/users/photos/1/photoannotations/"
+                        "title": "All photoannotations of given photo
+                    },
+                    "annometa:imageannotations-by-image-all-users": {
+                        "href": "/api/users/images/1/imageannotations/"
+                        "title": "All imageannotations of given image
+                    },
+                    "collection": {
+                        "href": "/api/users/",
+                        "title": "API entry point to user collection",
+                        "method": "GET"
+                    },
+                    "edit": {
+                        "href": "/api/users/merja/",
+                        "title": "Edit this user",
+                        "encoding": "json",
+                        "method": "PUT",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user_name": {
+                                    "description": "User name",
+                                    "type": "string"
+                                },
+                                "user_password": {
+                                    "description": "User password",
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["user_name"]
+                        }
+                    },
+                    "annometa:delete": {
+                        "href": "/api/users/merja/",
+                        "title": "Delete this user",
+                        "method": "DELETE"
+                    }
+                },
+                "items": [
+                    { 
+                        "user_name": "merja",
+                        "user_password": "pass",
+                        "@controls": {
+                            "self": {
+                                "href": "/api/users/merja/"
+                                },
+                                "profile": {
+                                    "href": "/profiles/user/"
+                            }
+                        }
+                    }
+                ]
+            }
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an user that doesn't exist.
+
+    + Body
+
+            {
+                "resource_url": "/api/users/merja/",
+                "@error": {
+                    "@message": "User not found",
+                    "@messages": [null]
+                },
+                "@controls": {
+                    "profile": {
+                        "href": "/profiles/error/"
+                    }
+                }
+            }
+
+### Edit user information [PUT]
+
+Replace the user's representation with a new one. 
+Missing optional fields will be set to null. 
+Must validate against the user schema. 
+
++ Relation: edit
++ Request (application/json)
+
+    + Headers
+        
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+                "user_name": "merja",
+                "user_password": "pass"
+            }
+        
++ Response 204
+
+
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an user that doesn't exist.
+
+    + Body
+    
+            ...
+        
++ Response 415 (application/vnd.mason+json)
+
+    The client sent a request with the wrong content type or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+
+### Delete user [DELETE]
+
+Deletes the user.
+
++ Relation: delete
++ Request
+
+    + Headers
+        
+            Accept: application/vnd.mason+json
+        
++ Response 204
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to delete user that doesn't exist.
+
+    + Body
+    
+            ...
+
++ Response 415 (application/vnd.mason+json)
+
+    The client sent a request with the wrong content type or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+
+
+
+
+
+# Group ImageAnnotations
+
+All of these resources use the [User Profile](reference/profiles/imageannotation-profile). 
+In error scenarios [Error Profile](reference/profiles/error-profile) is used.
+
+## ImageAnnotation Collection [/api/imageannotations/]
+
+A list of all imageannotations known to the API. 
+
+This collection can be sorted using the sortby query parameter. 
+For each imageannotation only  ---  id is included, 
+more information can be found by following the `self` relation of each user. 
+
+### List all imageannotations [GET]
+
+Get a list of all imageannotationss known to the API.
+
++ Relation: imageannotations-all
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+
++ Response 200 (application/vnd.mason+json)
+    
+    + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "@controls": {
+                    "self": {
+                        "href": "/api/imageannotations/"
+                    },
+                    "annometa:imageannotations-all": {
+                        "href": "/api/imageannotations/",
+                        "title": "GET All imageannotations"                                                
+                    },
+                     "annometa:imageannotations-by": {
+                        "href": "/api/users/merja/images/1/imageannotations/"
+                        "title:" "All imageannotations of given image of given user
+                    },
+                    "annometa:imageannotations-by-image-all-users": {
+                        "href": "/api/users/images/1/imageannotations/"
+                        "title": "All imageannotations of given image
+                    },
+                    "annometa:add-imageannotation": {
+                        "href": "/api/imageannotations/",
+                        "title": "Add a new imageannotation",
+                        "encoding": "json",
+                        "method": "POST",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "description": "ImageAnnotation's unique id",
+                                    "type": "integer"
+                                },
+                                "image_id": {
+                                    "description": "Image's unique id",
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "description": "User's unique id",
+                                    "type": "integer"
+                                },
+                                "meme_class": {
+                                    "description": "ImageAnnotation meme class",
+                                    "type": "boolean"
+                                },
+                                "HS_class": {
+                                    "description": "ImageAnnotation HS class",
+                                    "type": "boolean"
+                                },
+                                "text_class": {
+                                    "description": "ImageAnnotation text class",
+                                    "type": "boolean"
+                                },
+                                "polarity_classA": {
+                                    "description": "ImageAnnotation polarity classA",
+                                    "type": "integer"
+                                },
+                                "polarity_classB": {
+                                    "description": "ImageAnnotation polarity classB",
+                                    "type": "integer"
+                                },
+                                "HS_strength": {
+                                    "description": "ImageAnnotation HS stregth",
+                                    "type": "integer"
+                                },
+                                "HS_category": {
+                                    "description": "ImageAnnotation HS category",
+                                    "type": "string"
+                                },
+                                "text_text": {
+                                    "description": "ImageAnnotation image text",
+                                    "type": "string"
+                                },
+                                "text_language": {
+                                    "description": "ImageAnnotation image text language",
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["id","image_id","user_id","meme_class","HS_class","text_class"]
+                        }
+                    }
+                },
+                "items": [
+                    {
+                        "id": 1,
+                        "image_id": 1,
+                        "user_id": 1,
+                        "meme_class": True,
+                        "HS_class": True,
+                        "text_class": True,
+                        "polarity_classA": -2,
+                        "polarity_classB": -4,
+                        "HS_strength": -3,
+                        "HS_category": "ethnic, sexual, bully, troll, coded, idiom",
+                        "text_text": "PARENTS NAMED HIM MIKA PEOPLE CALL HIM BUBBA TUHNULA",
+                        "text_language": "english, finnish",
+                        "@controls": {
+                            "self": {
+                                "href": "/api/imageannotations/1/"
+                            }, 
+                            "profile": {
+                                "href": "/profiles/imageannotation/"
+                            }
+                        }
+                    }
+                ]
+            }
+
+
+### Add imageannotation [POST]
+
+Adds a new imageannotation. The imageannotation representation must be valid against the user schema.
+
++ Relation: add-imageannotation
++ Request (application/json)
+
+    + Headers
+
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+                "id": 1,
+                "image_id": 1,
+                "user_id": 1,
+                "meme_class": True,
+                "HS_class": True,
+                "text_class": True,
+                "polarity_classA": -2,
+                "polarity_classB": -4,
+                "HS_strength": -3,
+                "HS_category": "ethnic, sexual, bully, troll, coded, idiom",
+                "text_text": "PARENTS NAMED HIM MIKA PEOPLE CALL HIM BUBBA TUHNULA",
+                "text_language": "english, finnish"
+            }
+
++ Response 201
+
+    + Headers
+    
+            Location: /api/imageannotations/1/
+
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document 
+    that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+
++ Response 409 (application/vnd.mason+json)
+
+    The client is trying to add new annotation with existing id.
+
+    + Body
+        
+            ...
+            
++ Response 415 (application/vnd.mason+json)
+
+    The client did not use the proper content type, or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+            
+            
+
+
+
+## ImageAnnotation [/api/imageannotations/{imageannotation}/]
+
+This is a single imageannotation item by given user using the imageannotation's unique id. 
+For each imageannotation only --- imageannotation id is included, 
+more information can be found by following the `self` relation of each artist. 
+
++ Parameters
+
+    + imageannotation: 1 (integer) - imageannotation's unique id
+
+
+### ImageAnnotation information [GET]
+
+Get the imageannotation representation.
+
++ Relation: self
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+        
++ Response 200 (application/vnd.mason+json)
+
+    + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "id": 1,
+                "image_id": 1,
+                "user_id": 1,
+                "meme_class": True,
+                "HS_class": True,
+                "text_class": True,
+                "polarity_classA": -2,
+                "polarity_classB": -4,
+                "HS_strength": -3,
+                "HS_category": "ethnic, sexual, bully, troll, coded, idiom",
+                "text_text": "PARENTS NAMED HIM MIKA PEOPLE CALL HIM BUBBA TUHNULA",
+                "text_language": "english, finnish",
+                "@controls": {
+                    "self": {
+                        "href": "/api/user/{merja}/images/1/imageannotations/1/"
+                    },
+                    "collection": {
+                        "href": "/api/imageannotations/",
+                        "title": "API entry point to imageannotation collection",
+                        "method": "GET"
+                    },
+                    "edit": {
+                        "href": "/api/imageannotations/1/",
+                        "title": "Edit this imageannotation",
+                        "encoding": "json",
+                        "method": "PUT",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "description": "ImageAnnotation's unique id",
+                                    "type": "integer"
+                                },
+                                "image_id": {
+                                    "description": "Image's unique id",
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "description": "User's unique id",
+                                    "type": "integer"
+                                },
+                                "meme_class": {
+                                    "description": "ImageAnnotation meme class",
+                                    "type": "boolean"
+                                },
+                                "HS_class": {
+                                    "description": "ImageAnnotation HS class",
+                                    "type": "boolean"
+                                },
+                                "text_class": {
+                                    "description": "ImageAnnotation text class",
+                                    "type": "boolean"
+                                },
+                                "polarity_classA": {
+                                    "description": "ImageAnnotation polarity classA",
+                                    "type": "integer"
+                                },
+                                "polarity_classB": {
+                                    "description": "ImageAnnotation polarity classB",
+                                    "type": "integer"
+                                },
+                                "HS_strength": {
+                                    "description": "ImageAnnotation HS stregth",
+                                    "type": "integer"
+                                },
+                                "HS_category": {
+                                    "description": "ImageAnnotation HS category",
+                                    "type": "string"
+                                },
+                                "text_text": {
+                                    "description": "ImageAnnotation image text",
+                                    "type": "string"
+                                },
+                                "text_language": {
+                                    "description": "ImageAnnotation image text language",
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["id","image_id","user_id","meme_class","HS_class","text_class"]
+                        }
+                    },
+                    "annometa:delete": {
+                        "href": "/api/imageannotations/1/",
+                        "title": "Delete this imageannotation",
+                        "method": "DELETE"
+                    }
+                },
+                "items": [
+                    { 
+                        "id": 1,
+                        "image_id": 1,
+                        "user_id": 1,
+                        "meme_class": True,
+                        "HS_class": True,
+                        "text_class": True,
+                        "polarity_classA": -2,
+                        "polarity_classB": -4,
+                        "HS_strength": -3,
+                        "HS_category": "ethnic, sexual, bully, troll, coded, idiom",
+                        "text_text": "PARENTS NAMED HIM MIKA PEOPLE CALL HIM BUBBA TUHNULA",
+                        "text_language": "english, finnish",
+                        "@controls": {
+                            "self": {
+                                "href": "/api/imageannotations/1/"
+                                },
+                                "profile": {
+                                    "href": "/profiles/imageannotation/"
+                            }
+                        }
+                    }
+                ]
+            }
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an annotation that doesn't exist.
+
+    + Body
+
+            {
+                "resource_url": "/api/imageannotations/1/",
+                "@error": {
+                    "@message": "ImageAnnotation not found",
+                    "@messages": [null]
+                },
+                "@controls": {
+                    "profile": {
+                        "href": "/profiles/error/"
+                    }
+                }
+            }
+
+            
+
+### Edit ImageAnnotation information [PUT]
+
+Replace the imageannotation's representation with a new one. 
+Missing optional fields will be set to null. 
+Must validate against the user schema. 
+
++ Relation: edit
++ Request (application/json)
+
+    + Headers
+        
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+                "id": 1,
+                "image_id": 1,
+                "user_id": 1,
+                "meme_class": True,
+                "HS_class": True,
+                "text_class": True,
+                "polarity_classA": -2,
+                "polarity_classB": -4,
+                "HS_strength": -3,
+                "HS_category": "ethnic, sexual, bully, troll, coded, idiom",
+                "text_text": "PARENTS NAMED HIM MIKA PEOPLE CALL HIM BUBBA TUHNULA",
+                "text_language": "english, finnish"
+            }
+        
++ Response 204
+
+
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an imageannotation that doesn't exist.
+
+    + Body
+    
+            ...
+        
++ Response 415 (application/vnd.mason+json)
+
+    The client sent a request with the wrong content type or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+
+### Delete ImageAnnotation [DELETE]
+
+Deletes the imageannotation.
+
++ Relation: delete
++ Request
+
+    + Headers
+        
+            Accept: application/vnd.mason+json
+        
++ Response 204
+
++ Response 404 (application/vnd.mason+json)
+
+   The client is trying to delete annotation that doesn't exist.
+
+    + Body
+    
+            ...
+
++ Response 415 (application/vnd.mason+json)
+
+    The client sent a request with the wrong content type or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+
+
+
+
+
+# Group PhotoAnnotations
+
+All of these resources use the [User Profile](reference/profiles/photoannotation-profile). 
+In error scenarios [Error Profile](reference/profiles/error-profile) is used.
+
+## PhotoAnnotation Collection [/api/photoannotations/]
+
+A list of all photoannotations known to the API. 
+
+This collection can be sorted using the sortby query parameter. 
+For each photoannotation only  ---  id is included, 
+more information can be found by following the `self` relation of each user. 
+
+### List all PhotoAnnotations [GET]
+
+Get a list of all photoannotations known to the API.
+
++ Relation: photoannotations-all
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+
++ Response 200 (application/vnd.mason+json)
+    
+    + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "@controls": {
+                    "self": {
+                        "href": "/api/photoannotations/"
+                    },
+                    "annometa:photoannotations-all": {
+                        "href": "/api/photoannotations/",
+                        "title": "GET All photoannotations"                                                
+                    },
+                      "annometa:photoannotations-by": {
+                        "href": "/api/users/merja/photos/1/photoannotations/"
+                        "title:" "All photoannotations of given photo of given user
+                    },
+                    "annometa:photoannotations-by-photo-all-users": {
+                        "href": "/api/users/photos/1/photoannotations/"
+                        "title": "All photoannotations of given image
+                    },
+                    "annometa:add-photoannotation": {
+                        "href": "/api/photoannotations/",
+                        "title": "Add a new photoannotation",
+                        "encoding": "json",
+                        "method": "POST",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "description": "Photoannotation's unique id",
+                                    "type": "integer"
+                                },
+                                "image_id": {
+                                    "description": "Image's unique id",
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "description": "User's unique id",
+                                    "type": "integer"
+                                },
+                                "persons_class": {
+                                    "description": "Persons in photo",
+                                    "type": "boolean"
+                                },
+                                "slideshow_class": {
+                                    "description": "Suitable for slideshow",
+                                    "type": "boolean"
+                                },
+                                "positivity_class": {
+                                    "description": "Photo positivity index",
+                                    "type": "integer"
+                                },
+                                "text_free_comment": {
+                                    "description": "Photo's free text comment",
+                                    "type": "string"
+                                },
+                                "text_persons": {
+                                    "description": "Person names in photo",
+                                    "type": "string"
+                                },
+                                "text_persons_comment": {
+                                    "description": "Free text comment of persons",
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["id","image_id","user_id","persons_class","slideshow_class","positivity_class"]
+                        }
+                    }
+                },
+                "items": [
+                    {
+                        "id": 2,
+                        "image_id": 9,
+                        "user_id": 1,
+                        "persons_class": "True",
+                        "slideshow_class": "False",
+                        "positivity_class": 6,
+                        "text_free_comment": "Lomalla Norjassa kesällä 2020",
+                        "text_persons": "Hessu Hopo, Iines Ankka",
+                        "text_persons_comment": "Hauskat ilmeet kavereilla",
+                        "@controls": {
+                            "self": {
+                                "href": "/api/photoannotations/1/"
+                            }, 
+                            "profile": {
+                                "href": "/profiles/photoannotation/"
+                            }
+                        }
+                    }
+                ]
+            }
+
+
+### Add PhotoAnnotation [POST]
+
+Adds a new photoannotation. The photoannotation representation must be valid against the user schema.
+
++ Relation: add-photoannotation
++ Request (application/json)
+
+    + Headers
+
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+                "id": 2,
+                "image_id": 9,
+                "user_id": 1,
+                "image_id": 9,
+                "user_id": 1,
+                "persons_class": "True",
+                "slideshow_class": "False",
+                "positivity_class": 6,
+                "text_free_comment": "Lomalla Norjassa kesällä 2020",
+                "text_persons": "Hessu Hopo, Iines Ankka",
+                "text_persons_comment": "Hauskat ilmeet kavereilla"
+            }
+
++ Response 201
+
+    + Headers
+    
+            Location: /api/photoannotations/1/
+
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document 
+    that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+            
++ Response 409 (application/vnd.mason+json)
+
+    The client is trying to add new annotation with existing id.
+
+    + Body
+        
+            ...
+
++ Response 415 (application/vnd.mason+json)
+
+    The client did not use the proper content type, or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+            
+            
+            
+
+## PhotoAnnotation [/api/photoannotations/{photoannotation}/]
+
+This is a single photoannotation item by given user using the photoannotation's unique id. 
+For each photoannotation only --- photoannotation id is included, 
+more information can be found by following the `self` relation of each artist. 
+
++ Parameters
+
+    + photoannotation: 1 (integer) - photoannotation's unique id
+
+
+### PhotoAnnotation information [GET]
+
+Get the photoannotation representation.
+
++ Relation: self
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+        
++ Response 200 (application/vnd.mason+json)
+
+    + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "id": 2,
+                "image_id": 9,
+                "user_id": 1,
+                "persons_class": "True",
+                "slideshow_class": "False",
+                "positivity_class": 6,
+                "text_free_comment": "Lomalla Norjassa kesällä 2020",
+                "text_persons": "Hessu Hopo, Iines Ankka",
+                "text_persons_comment": "Hauskat ilmeet kavereilla",
+                "@controls": {
+                    "self": {
+                        "href": "/api/photoannotations/1/"
+                    },
+                    "collection": {
+                        "href": "/api/photoannotations/",
+                        "title": "API entry point to photoannotation collection",
+                        "method": "GET"
+                    },
+                    "edit": {
+                        "href": "/api/photoannotations/1/",
+                        "title": "Edit this photoannotation",
+                        "encoding": "json",
+                        "method": "PUT",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                               "id": {
+                                    "description": "Photoannotation's unique id",
+                                    "type": "integer"
+                                },
+                                 "image_id": {
+                                    "description": "Image's unique id",
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "description": "User's unique id",
+                                    "type": "integer"
+                                },
+                                "persons_class": {
+                                    "description": "Persons in photo",
+                                    "type": "boolean"
+                                },
+                                "slideshow_class": {
+                                    "description": "Suitable for slideshow",
+                                    "type": "boolean"
+                                },
+                                "positivity_class": {
+                                    "description": "Photo positivity index",
+                                    "type": "integer"
+                                },
+                                "text_free_comment": {
+                                    "description": "Photo's free text comment",
+                                    "type": "string"
+                                },
+                                "text_persons": {
+                                    "description": "Person names in photo",
+                                    "type": "string"
+                                },
+                                "text_persons_comment": {
+                                    "description": "Free text comment of persons",
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["id","image_id","user_id","persons_class","slideshow_class","positivity_class"]
+                        }
+                    },
+                    "annometa:delete": {
+                        "href": "/api/photoannotations/1/",
+                        "title": "Delete this photoannotation",
+                        "method": "DELETE"
+                    }
+                },
+                "items": [
+                    { 
+                        "id": 2,
+                        "image_id": 9,
+                        "user_id": 1,
+                        "persons_class": "True",
+                        "slideshow_class": "False",
+                        "positivity_class": 6,
+                        "text_free_comment": "Lomalla Norjassa kesällä 2020",
+                        "text_persons": "Hessu Hopo, Iines Ankka",
+                        "text_persons_comment": "Hauskat ilmeet kavereilla",
+                        "@controls": {
+                            "self": {
+                                "href": "/api/photoannotations/1/"
+                                },
+                                "profile": {
+                                    "href": "/profiles/photoannotation/"
+                            }
+                        }
+                    }
+                ]
+            }
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an annotation that doesn't exist.
+
+    + Body
+
+            {
+                "resource_url": "/api/photoannotations/1/",
+                "@error": {
+                    "@message": "PhotoAnnotation not found",
+                    "@messages": [null]
+                },
+                "@controls": {
+                    "profile": {
+                        "href": "/profiles/error/"
+                    }
+                }
+            }
+
+            
+
+### Edit PhotoAnnotation information [PUT]
+
+Replace the photoannotation's representation with a new one. 
+Missing optional fields will be set to null. 
+Must validate against the user schema. 
+
++ Relation: edit
++ Request (application/json)
+
+    + Headers
+        
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+                "id": 2,
+                "image_id": 9,
+                "user_id": 1,
+                "persons_class": "True",
+                "slideshow_class": "False",
+                "positivity_class": 6,
+                "text_free_comment": "Lomalla Norjassa kesällä 2020",
+                "text_persons": "Hessu Hopo, Iines Ankka",
+                "text_persons_comment": "Hauskat ilmeet kavereilla",
+            }
+        
++ Response 204
+
+
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an annotation that doesn't exist.
+
+    + Body
+    
+            ...
+        
++ Response 415 (application/vnd.mason+json)
+
+    The client sent a request with the wrong content type or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+
+### Delete PhotoAnnotation [DELETE]
+
+Deletes the photoannotation.
+
++ Relation: delete
++ Request
+
+    + Headers
+        
+            Accept: application/vnd.mason+json
+        
++ Response 204
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to delete annotation that doesn't exist.
+
+    + Body
+    
+            ...
+
++ Response 415 (application/vnd.mason+json)
+
+    The client sent a request with the wrong content type or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+
+
+
+
+# Group Images and Photos
+All of these resources use the [User Profile](reference/profiles/imagecontent-profile). 
+In error scenarios [Error Profile](reference/profiles/error-profile) is used.
+
+## Image Collection [/api/images/]
+
+A list of all images known to the API. Images have their "is_private" attribute set to "False".
+
+This collection can be sorted using the sortby query parameter. 
+For each images only  ---  id is included, 
+more information can be found by following the `self` relation of each user. 
+
+### List all images [GET]
+
+Get a list of all images known to the API.
+
++ Relation: images-all
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+
++ Response 200 (application/vnd.mason+json)
+    
+    + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "@controls": {
+                    "self": {
+                        "href": "/api/images/"
+                    },
+                    "annometa:images-all": {
+                        "href": "/api/images/",
+                        "title": "GET All images"                                                
+                    },
+                    "annometa:add-image": {
+                        "href": "/api/images/",
+                        "title": "Add image",
+                        "encoding": "json",
+                        "method": "POST",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "description": "Image's unique id",
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "description": "User's unique id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Image's name",
+                                    "type": "string"
+                                },
+                                "publish_date": {
+                                    "description": "Image's publish date",
+                                    "type": "string"
+                                },
+                                "location": {
+                                    "description": "Image's location (where to find it)",
+                                    "type": "string"
+                                },
+                                "is_private": {
+                                    "description": "Public image is not private, private photo is private",
+                                    "type": "boolean"
+                                },
+                                "date": {
+                                    "description": "Date now",
+                                    "type": "datetime"
+                                }
+                            },
+                            "required": ["id","user_id","name","location","is_private","date"]
+                        }
+                    }
+                },
+                "items": [
+                    {
+                        "id": 1,
+                        "user_id": 1,
+                        "name": "halla-aho meemi32.jpg",
+                        "publish_date": "2021-05-11 21:28:38",
+                        "location": "\\static\\images\\halla-aho meemi32.jpg",
+                        "is_private": False,
+                        "date": 2021-05-11 21:28:38,
+                        "@controls": {
+                            "self": {
+                                "href": "/api/images/1/"
+                            }, 
+                            "profile": {
+                                "href": "/profiles/image/"
+                            }
+                        }
+                    }
+                ]
+            }
+
+
+
+### Add an image [POST]
+
+Adds a new image. The image representation must be valid against the image content schema.
+
++ Relation: add-image
++ Request (application/json)
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+               "id": 1,
+               "user_id": 1,
+               "name": "halla-aho meemi32.jpg",
+               "publish_date": "2021-05-11 21:28:38",
+               "location": "\\static\\images\\halla-aho meemi32.jpg",
+               "is_private": False,
+               "date": 2021-05-11 21:28:38,
+               "@controls": {
+                    "self": {
+                        "href": "/api/images/1/"
+                    }, 
+                    "profile": {
+                        "href": "/profiles/image/"
+                    }
+                }
+            }
+
++ Response 201
+
+    + Headers
+    
+            Location: /api/images/1/
+            
+    + Body
+    
+            {}
+
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+            
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an image that doesn't exist.
+
+    + Body
+    
+            ...
+            
++ Response 500 (application/vnd.mason+json)
+
+    Saving image failed.
+
+    + Body
+    
+            ...
+            
+
+## Image [/api/images/{image}/]
+
+This is a single image item by given user using the image's unique id. 
+For each image only --- image id is included, 
+more information can be found by following the `self` relation of each artist. 
+
++ Parameters
+
+    + image: 1 (integer) - image's unique id
+
+
+### Image information [GET]
+
+Get the image representation.
+
++ Relation: self
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+        
++ Response 200 (application/vnd.mason+json)
+
+ + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "id": 1,
+                "user_id": 1,
+                "name": "halla-aho meemi32.jpg",
+                "publish_date": "2021-05-11 21:28:38",
+                "location": "\\static\\images\\halla-aho meemi32.jpg",
+                "is_private": False,
+                "date": 2021-05-11 21:28:38,
+                "@controls": {
+                    "self": {
+                        "href": "/api/images/1/"
+                    },
+                    "collection": {
+                        "href": "/api/images/",
+                        "title": "API entry point to image collection",
+                        "method": "GET"
+                    },
+                    "edit": {
+                        "href": "/api/images/1/",
+                        "title": "Add this image",
+                        "encoding": "json",
+                        "method": "PUT",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "description": "Image's unique id",
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "description": "User's unique id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Image's name",
+                                    "type": "string"
+                                },
+                                "publish_date": {
+                                    "description": "Image's publish date",
+                                    "type": "string"
+                                },
+                                "location": {
+                                    "description": "Image's location (where to find it)",
+                                    "type": "string"
+                                },
+                                "is_private": {
+                                    "description": "Public image is not private, private photo is private",
+                                    "type": "boolean"
+                                },
+                                "date": {
+                                    "description": "Date now",
+                                    "type": "datetime"
+                                }
+                            },
+                            "required": ["id","user_id","name","location","is_private","date"]
+                        }
+                    },
+                    "annometa:delete": {
+                        "href": "/api/images/1/",
+                        "title": "Delete this image",
+                        "method": "DELETE"
+                    }
+                },
+                "items": [
+                    {
+                        "id": 1,
+                        "user_id": 1,
+                        "name": "halla-aho meemi32.jpg",
+                        "publish_date": "2021-05-11 21:28:38",
+                        "location": "\\static\\images\\halla-aho meemi32.jpg",
+                        "is_private": False,
+                        "date": 2021-05-11 21:28:38,
+                        "@controls": {
+                            "self": {
+                                "href": "/api/images/1/"
+                            }, 
+                            "profile": {
+                                "href": "/profiles/image/"
+                            }
+                        }
+                    }
+                ]
+            }
+            
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an image that doesn't exist.
+
+    + Body
+
+            {
+                "resource_url": "/api/images/1/",
+                "@error": {
+                    "@message": "Image not found",
+                    "@messages": [null]
+                },
+                "@controls": {
+                    "profile": {
+                        "href": "/profiles/error/"
+                    }
+                }
+            }
+
+
+### Edit image information [PUT]
+
+Replace the image's representation with a new one. 
+Missing optional fields will be set to null. 
+Must validate against the user schema. 
+
++ Relation: edit
++ Request (application/json)
+
+    + Headers
+        
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+                "id": 3,
+                "user_id": 1,
+                "name": "kuha meemi3.jpg",
+                "publish_date": "2021-05-06 16:30:41",
+                "location": "\\static\\images\\kuha meemi3.jpg",
+                "is_private": False,
+                "date": 2021-05-11 21:28:39,
+            }
+        
++ Response 204
+
+
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an image that doesn't exist.
+
+    + Body
+    
+            ...
+        
++ Response 415 (application/vnd.mason+json)
+
+    The client sent a request with the wrong content type or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+
+### Delete image [DELETE]
+
+Deletes the imageannotation.
+
++ Relation: delete
++ Request
+
+    + Headers
+        
+            Accept: application/vnd.mason+json
+        
++ Response 204
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+
++ Response 415 (application/vnd.mason+json)
+
+    The client sent a request with the wrong content type or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+
+
+
+
+
+## Photo Collection [/api/photos/]
+
+A list of all photos known to the API. Photos have their "is_private" attribute set to "True".
+
+This collection can be sorted using the sortby query parameter. 
+For each photos only  ---  id is included, 
+more information can be found by following the `self` relation of each user. 
+
+### List all photos [GET]
+
+Get a list of all photos known to the API.
+
++ Relation: photos-all
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+
++ Response 200 (application/vnd.mason+json)
+    
+    + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "@controls": {
+                    "self": {
+                        "href": "/api/photos/"
+                    },
+                    "annometa:images-all": {
+                        "href": "/api/photos/",
+                        "title": "GET All photos"                                                
+                    },
+                    "annometa:add-photo": {
+                        "href": "/api/photos/",
+                        "title": "Add photos",
+                        "encoding": "json",
+                        "method": "POST",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "description": "Photo's unique id",
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "description": "User's unique id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Photo's name",
+                                    "type": "string"
+                                },
+                                "publish_date": {
+                                    "description": "Photo's publish date",
+                                    "type": "string"
+                                },
+                                "location": {
+                                    "description": "Photo's location (where to find it)",
+                                    "type": "string"
+                                },
+                                "is_private": {
+                                    "description": "Public image is not private, private photo is private",
+                                    "type": "boolean"
+                                },
+                                "date": {
+                                    "description": "Date now",
+                                    "type": "datetime"
+                                }
+                            },
+                            "required": ["id","user_id","name","location","is_private","date"]
+                        }
+                    }
+                },
+                "items": [
+                    {
+                        "id": 9,
+                        "user_id": 3,
+                        "name": "Norja 2020",
+                        "publish_date": null,
+                        "location": "\\static\\photos\\Norja 2020.jpg",
+                        "is_private": False,
+                        "date": 2021-05-11 21:28:39,
+                        "@controls": {
+                            "self": {
+                                "href": "/api/photos/9/"
+                            }, 
+                            "profile": {
+                                "href": "/profiles/photo/"
+                            }
+                        }
+                    }
+                ]
+            }
+
+
+
+### Add a photo [POST]
+
+Adds a new photo to the system. The phot's representation must be valid against the image content schema.
+
++ Relation: add-photo
++ Request (application/json)
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+                "id": 9,
+                "user_id": 3,
+                "name": "Norja 2020",
+                "publish_date": null,
+                "location": "\\static\\photos\\Norja 2020.jpg",
+                "is_private": True,
+                "date": 2021-05-11 21:28:39,
+                "@controls": {
+                    "self": {
+                        "href": "/api/photos/9/"
+                    }, 
+                    "profile": {
+                        "href": "/profiles/photo/"
+                    }
+                }
+            }
+
+
++ Response 201
+
+    + Headers
+    
+            Location: /api/photos/9/
+            
+    + Body
+    
+            {}
+            
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+            
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an image that doesn't exist.
+
+    + Body
+    
+            ...
+            
++ Response 500 (application/vnd.mason+json)
+
+    Saving image failed.
+
+    + Body
+    
+            ...
+  
+
+## Photo [/api/photos/{photo}/]
+
+This is a single photo item by given user using the photo's unique id. 
+For each photo only --- photo id is included, 
+more information can be found by following the `self` relation of each artist. 
+
++ Parameters
+
+    + photo: 9 (integer) - photo's unique id
+
+
+### Photo information [GET]
+
+Get the photo representation.
+
++ Relation: self
++ Request
+
+    + Headers
+    
+            Accept: application/vnd.mason+json
+        
++ Response 200 (application/vnd.mason+json)
+
+ + Body
+
+            {
+                "@namespaces": {
+                    "annometa": {
+                        "name": "/link-relations#"
+                    }
+                },
+                "id": 9,
+                "user_id": 3,
+                "name": "Norja 2020",
+                "publish_date": null,
+                "location": "\\static\\photos\\Norja 2020.jpg",
+                "is_private": True,
+                "date": 2021-05-11 21:28:39,
+                "@controls": {
+                    "self": {
+                        "href": "/api/photos/9/"
+                    }, 
+                    "collection": {
+                        "href": "/api/photo/",
+                        "title": "API entry point to photo collection",
+                        "method": "GET"
+                    },
+                    "edit": {
+                        "href": "/api/photos/9/",
+                        "title": "Add this photo",
+                        "encoding": "json",
+                        "method": "PUT",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "description": "Image's unique id",
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "description": "User's unique id",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Image's name",
+                                    "type": "string"
+                                },
+                                "publish_date": {
+                                    "description": "Image's publish date",
+                                    "type": "string"
+                                },
+                                "location": {
+                                    "description": "Image's location (where to find it)",
+                                    "type": "string"
+                                },
+                                "is_private": {
+                                    "description": "Public image is not private, private photo is private",
+                                    "type": "boolean"
+                                },
+                                "date": {
+                                    "description": "Date now",
+                                    "type": "datetime"
+                                }
+                            },
+                            "required": ["id","user_id","name","location","is_private","date"]
+                        }
+                    },
+                    "annometa:delete": {
+                        "href": "/api/photos/9/",
+                        "title": "Delete this photo",
+                        "method": "DELETE"
+                    }
+                },
+                "items": [
+                    {
+                        "id": 9,
+                        "user_id": 3,
+                        "name": "Norja 2020",
+                        "publish_date": null,
+                        "location": "\\static\\photos\\Norja 2020.jpg",
+                        "is_private": False,
+                        "date": 2021-05-11 21:28:39,
+                        "@controls": {
+                            "self": {
+                                "href": "/api/photos/9/"
+                            }, 
+                            "profile": {
+                                "href": "/profiles/photo/"
+                            }
+                        }
+                    }
+                ]
+            }
+
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an image that doesn't exist.
+
+    + Body
+
+            {
+                "resource_url": "/api/photos/1/",
+                "@error": {
+                    "@message": "Photo not found",
+                    "@messages": [null]
+                },
+                "@controls": {
+                    "profile": {
+                        "href": "/profiles/error/"
+                    }
+                }
+            }
+
+
+### Edit photo information [PUT]
+
+Replace the photo's representation with a new one. 
+Missing optional fields will be set to null. 
+Must validate against the user schema. 
+
++ Relation: edit
++ Request (application/json)
+
+    + Headers
+        
+            Accept: application/vnd.mason+json
+        
+    + Body
+
+            {
+                "id": 3,
+                "user_id": 1,
+                "name": "lampaat tauolla.jpg",
+                "publish_date": 2020-05-05 20:10:11,
+                "location": "\\static\\images\\kuha meemi3.jpg",
+                "is_private": False,
+                "date": 2021-05-11 21:28:39,
+            }
+        
++ Response 204
+
+
++ Response 400 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to access an photo that doesn't exist.
+
+    + Body
+    
+            ...
+        
++ Response 415 (application/vnd.mason+json)
+
+    The client sent a request with the wrong content type or the request body was not valid JSON.
+
+    + Body
+        
+            ...
+
+### Delete photo [DELETE]
+
+Deletes the photo. quite.
+
++ Relation: delete
++ Request
+
+    + Headers
+        
+            Accept: application/vnd.mason+json
+        
++ Response 204
+
++ Response 404 (application/vnd.mason+json)
+
+    The client is trying to send a JSON document that doesn't validate against the schema, or has non-existent release date.
+
+    + Body
+    
+            ...
+
++ Response 415 (application/vnd.mason+json)
+
+    The client sent a request with the wrong content type or the request body was not valid JSON.
+
+    + Body
+        
+            ...
