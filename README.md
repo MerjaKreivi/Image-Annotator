@@ -45,8 +45,7 @@ There are many python libraries that is needed to be installed. The "requirement
 ## Running the tests
 Some data is needed to be able to run the tests. Pytest is used to test both the database and resources. Pytest is already installed, as it is part of "requirements.txt" library list.
 
-### Data
-Data of memes and images was created by scraping Google image search with Beautiful Soup python library (https://pypi.org/project/beautifulsoup4/). Beautiful Soup library can be installed with ‘pip install beautifulsoup4’, if needed. Web scraping source code ‘WebScrapGoogle_images.py’ was used to collect raw data from web. Small test data folder ‘Data/ImageTest’ includes some original images scrapped from web. Private photographs were used to create ‘Data/PhotoTest’ -folder. ImageTest and PhotoTest are available at Data -folder.
+
 
 ### Flask settings
 Set Flask configuration setting class as 'development' or 'production' or 'default' or 'testing'
@@ -94,3 +93,7 @@ Keep command prompt open, and open web-browser. Open http://localhost:5000/admin
 Open Image Annotator API at local host window by command:
 <li>	 http://localhost:5000/admin/ 
 
+### Data
+
+Data of meme images was created by scraping Google image search with Beautiful Soup python library (https://pypi.org/project/beautifulsoup4/). Beautiful Soup library can be installed with ‘pip install beautifulsoup4’, if needed. Web scraping source code ‘WebScrapGoogle_images.py’ was used to collect raw data from web. Small test data folder ‘Data/ImageTest’ includes some original images scrapped from web. Private photographs were used to create ‘Data/PhotoTest’ -folder. ImageTest and PhotoTest are available at Data -folder.
+ 
