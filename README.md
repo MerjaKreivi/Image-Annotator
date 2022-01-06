@@ -1,16 +1,17 @@
 # Image Annotator
 
-### This REST API was originally created as team assignment for Programmable Web Project course on spring 2021 in University of Oulu.
+This REST API was originally created as team assignment for Programmable Web Project course on spring 2021 in University of Oulu.
 
 The project was originally carried by Merja Kreivi-Kauppinen and Juha Paaso.
 
 Project includes two annotators - one for private photos, and one for social media images for reserch purposis.
 
-## Getting started
+### Getting started
 
 It is recommended to use virtual environment for using and testing the code. Usage of Python 3.7 or newer version is required. Use "pip install" to install virtual environment packages.
 
 ### Setting up virtual environment
+
 Open command prompt (cmd) and proceed to C root folder. 
 <li>   C:\> </li>
 
@@ -34,6 +35,7 @@ You see the name of your virtual environment ".venv" in front of your command pr
 <li>  (.venv) C:\image-annotator> </li>
 
 ### Installing required python libraries
+
 Install the required libraries in your virtual environment in order to use this project code. Use following command in cmd:
 <li>	 (.venv) C:\image-annotator>pip install -r requirements.txt
 
@@ -42,12 +44,12 @@ Install project with pip in editable (-e) mode with dot (.)
 
 There are many python libraries that is needed to be installed. The "requirements.txt" file on C:\image-annotator folder shows all those. These are all necessary to be installed in order to use our code. 
 
-## Running the tests
+### Running the tests
+
 Some data is needed to be able to run the tests. Pytest is used to test both the database and resources. Pytest is already installed, as it is part of "requirements.txt" library list.
 
-
-
 ### Flask settings
+
 Set Flask configuration setting class as 'development' or 'production' or 'default' or 'testing'
 <li>  (.venv) C:\image-annotator>set FLASK_ENV=development
 
@@ -55,14 +57,17 @@ In order to start the server set the package name 'hub' and run Flask in the hub
 <li>  (.venv) C:\image-annotator>set FLASK_APP=hub
 
 ### Database implementation
+
 Init flask database basedir hub:
 <li>  (.venv) C:\image-annotator>flask init-db
 
 ### Populating database
+
 Populate flask database:
 <li>	 (.venv) C:\image-annotator>flask populate-db
 
 ### Running database tests
+
 In order to test the database "Flask settings" need to be completed. "Database implementation" and "Database population" is not needed for these tests. Details about the tests can be found at the comments inside db_test.py. 
 
 Note! As there is another test file in this same folder, the resource_test.py, please rename that temporarily as "resource_test_.py so that only db_test.py file is run by pytest. Pytest command runs all files in folder with file name starting or ending with test word.
@@ -73,6 +78,7 @@ Run the database tests inside "tests"-folder with following command:
 <li>                  or alternatively python -m pytest -s
  
 ### Running resource tests
+
 In order to test the resources "Flask settings" need to be completed. "Database implementation" and "Database population" is not needed for these tests. Details about the tests can be found at the comments inside resource_test.py
 
 Run the resource tests inside "tests"-folder with following command:
@@ -82,7 +88,8 @@ Run the resource tests inside "tests"-folder with following command:
 
 Note! As there is another test file in this same folder, the db_test.py, please rename that temporarily as "db_test_.py" so that only resource_test.py file is run by pytest. Pytest command runs all files in folder with file name starting or ending with test word.
 
-## Instruction how to use the provided client
+### Instruction how to use the provided client
+
 We have prepared a small GUI for the image-annotator API. It runs on web-browser and it's based on HTML, CSS, JavaScript and jQuery. In order to use provided client "Flask settings", "Database implementation" and "Populating database" paragraph commands have to be completed. 
 
 Next, run flask local host at http://localhost:5000/admin/ with following command in image-annotator folder:
