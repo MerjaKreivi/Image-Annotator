@@ -1,8 +1,6 @@
 # Image Annotator
 
-This REST API was originally created as team assignment for Programmable Web Project course on spring 2021 in University of Oulu.
-
-The project was originally carried by Merja Kreivi-Kauppinen and Juha Paaso.
+This REST API was created as team assignment for Programmable Web Project course on spring 2021 in University of Oulu. The project was originally carried by Merja Kreivi-Kauppinen and Juha Paaso.
 
 Project includes two annotators - one for private photos, and one for social media images for reserch purposis.
 
